@@ -19,10 +19,9 @@ class ConnectionScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is ConnectionSuccess) {
           ConnectionInfo connectionInfo = state.connectionInfo;
-          ConnectionCubit cubit = context.read<ConnectionCubit>();
           
           Navigator.pushReplacementNamed(context, mainScreen,
-              arguments: [connectionInfo, cubit],);
+              arguments: connectionInfo,);
         } else if (state is ConnectionFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
