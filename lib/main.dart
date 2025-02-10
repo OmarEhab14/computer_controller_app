@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mouse_and_keyboard_remote_controller/core/app_router.dart';
+import 'package:mouse_and_keyboard_remote_controller/cubit/connection_cubit.dart';
 import 'package:mouse_and_keyboard_remote_controller/theme/my_theme.dart';
 
 void main() {
@@ -12,10 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: myTheme,
-      onGenerateRoute: appRouter.generateRoute,
+    return BlocProvider(
+      create: (context) => ConnectionCubit(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: myTheme,
+          onGenerateRoute: appRouter.generateRoute,
+        ),
     );
   }
 }
